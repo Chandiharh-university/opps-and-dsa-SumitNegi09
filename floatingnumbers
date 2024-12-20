@@ -1,0 +1,41 @@
+#include <iostream>
+#include <iomanip> // For std::setprecision
+#include <cmath>   // For std::round
+
+int main() {
+    float rowsFloat, colsFloat;
+
+    // Input from the user
+    std::cout << "Enter the number of rows (as a floating-point number): ";
+    std::cin >> rowsFloat;
+
+    std::cout << "Enter the number of columns (as a floating-point number): ";
+    std::cin >> colsFloat;
+
+    // Round the floating-point numbers to the nearest integers
+    int rows = static_cast<int>(std::round(rowsFloat));
+    int cols = static_cast<int>(std::round(colsFloat));
+
+    // Print the multiplication table
+    std::cout << std::fixed << std::setprecision(2); // Set precision for floating-point output
+    std::cout << "Multiplication Table (" << rows << " rows and " << cols << " columns):\n";
+
+    // Print the header row
+    std::cout << std::setw(10) << " "; // Top-left corner
+    for (int j = 1; j <= cols; ++j) {
+        std::cout << std::setw(10) << j; // Column headers
+    }
+    std::cout << std::endl;
+
+    // Print the table
+    for (int i = 1; i <= rows; ++i) {
+        std::cout << std::setw(10) << i; // Row header
+        for (int j = 1; j <= cols; ++j) {
+            float result = i * j;
+            std::cout << std::setw(10) << result; // Print the product
+        }
+        std::cout << std::endl;
+    }
+
+    return 0;
+}
