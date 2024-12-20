@@ -1,0 +1,41 @@
+#include <iostream>
+
+void incrementStatic() {
+    static int staticCounter = 0; // Static variable
+    staticCounter++;
+    std::cout << "Static Counter: " << staticCounter << std::endl;
+}
+
+void passByValue(int value) {
+    value += 5; // Modify the local copy
+    std::cout << "Inside passByValue: " << value << std::endl;
+}
+
+void passByReference(int &ref) {
+    ref += 5; // Modify the original variable
+    std::cout << "Inside passByReference: " << ref << std::endl;
+}
+
+int main() {
+    // Demonstrating static variable
+    std::cout << "Demonstrating static variable:" << std::endl;
+    incrementStatic(); // Call 1
+    incrementStatic(); // Call 2
+    incrementStatic(); // Call 3
+
+    // Demonstrating pass by value
+    std::cout << "\nDemonstrating pass by value:" << std::endl;
+    int a = 5;
+    std::cout << "Before passByValue: " << a << std::endl;
+    passByValue(a);
+    std::cout << "After passByValue: " << a << std::endl; // a remains unchanged
+
+    // Demonstrating pass by reference
+    std::cout << "\nDemonstrating pass by reference:" << std::endl;
+    int b = 5;
+    std::cout << "Before passByReference: " << b << std::endl;
+    passByReference(b);
+    std::cout << "After passByReference: " << b << std::endl; // b is modified
+
+    return 0;
+}
