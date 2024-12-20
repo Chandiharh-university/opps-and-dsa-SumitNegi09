@@ -1,0 +1,47 @@
+#include <iostream>
+
+void addToStaticSum(int number) {
+    static int staticSum = 0; // Static variable to hold the sum
+    staticSum += number; // Add the number to the static sum
+    std::cout << "Current Static Sum: " << staticSum << std::endl;
+}
+
+void addByValue(int value, int &sum) {
+    sum += value; // Modify the sum by adding the value
+    std::cout << "Inside addByValue: Added " << value << ", New Sum: " << sum << std::endl;
+}
+
+void addByReference(int &ref, int value) {
+    ref += value; // Modify the original sum variable
+    std::cout << "Inside addByReference: Added " << value << ", New Sum: " << ref << std::endl;
+}
+
+int main() {
+    // Demonstrating static variable for sum
+    std::cout << "Demonstrating static variable for sum:" << std::endl;
+    addToStaticSum(1); // Call 1
+    addToStaticSum(2); // Call 2
+    addToStaticSum(3); // Call 3
+
+    // Demonstrating pass by value
+    std::cout << "\nDemonstrating pass by value:" << std::endl;
+    int sumByValue = 0;
+    std::cout << "Initial Sum (by value): " << sumByValue << std::endl;
+    addByValue(5, sumByValue);
+    addByValue(9, sumByValue);
+    addByValue(14, sumByValue);
+    std::cout << "Final Sum (by value): " << sumByValue << std::endl; // sumByValue remains unchanged
+
+    // Demonstrating pass by reference
+    std::cout << "\nDemonstrating pass by reference:" << std::endl;
+    int sumByReference = 0;
+    std::cout << "Initial Sum (by reference): " << sumByReference << std::endl;
+    addByReference(sumByReference, 5);
+    addByReference(sumByReference, 9);
+    addByReference(sumByReference, 14);
+    std::cout << "Final Sum (by reference): " << sumByReference << std::endl; // sumByReference is modified
+
+    return 0;
+}
+
+
