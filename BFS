@@ -1,0 +1,62 @@
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+#include <queue>
+#include <set>
+
+using namespace std;
+
+class Graph {
+public:
+    unordered_map<int, vector<int>> adjList;
+
+    void addVertex(int vertex) {
+        adjList[vertex];  // Automatically creates an empty list for the vertex if it doesn't exist
+    }
+
+    void addEdge(int vertex1, int vertex2) {
+        adjList[vertex1].push_back(vertex2);  // Directed edge from vertex1 to vertex2
+    }
+
+    void bfs(int start) {
+        set<int> visited;  // To track visited nodes
+        queue<int> q;
+
+        // Start BFS from the 'start' vertex
+        q.push(start);
+        visited.insert(start);
+
+        while (!q.empty()) {
+            int vertex = q.front();
+            q.pop();
+            cout << vertex << " ";  // Visit the current node (print it)
+
+            // Traverse all adjacent vertices
+            for (int neighbor : adjList[vertex]) {
+                if (visited.find(neighbor) == visited.end()) {
+                    visited.insert(neighbor);
+                    q.push(neighbor);  // Push unvisited neighbors into the queue
+                }
+            }
+        }
+    }
+};
+
+int main() {
+    Graph g;
+    g.addVertex(1);
+    g.addVertex(2);
+    g.addVertex(3);
+    g.addVertex(4);
+    
+    // Add edges (directed graph)
+    g.addEdge(1, 2);
+    g.addEdge(1, 3);
+    g.addEdge(2, 4);
+    
+    cout << "BFS Traversal starting from vertex 1: ";
+    g.bfs(1);  // Perform BFS starting from vertex 1
+    cout << endl;
+
+    return 0;
+}
